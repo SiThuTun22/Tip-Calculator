@@ -49,6 +49,14 @@ const TipCalculator = () => {
   // Policy: Round up to the nearest cent so the bill is always covered
   const perPerson = Math.ceil((totalBill / peopleInt) * 100) / 100;
 
+  const handleReset = () => {
+    setBill('');
+    setTip(0);
+    setCustomTip('');
+    setPeople('1');
+    setErrors({ bill: '', tip: '', people: '' });
+  };
+
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4 font-sans">
       <div className="bg-white w-full max-w-4xl rounded-2xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row gap-8">
@@ -143,6 +151,14 @@ const TipCalculator = () => {
               </p>
             </div>
           </div>
+
+          <button
+            onClick={handleReset}
+            disabled={!bill && tip === 0 && !customTip && people === '1'}
+            className="w-full mt-8 bg-emerald-500 text-slate-900 font-bold py-3 rounded-lg uppercase tracking-wider hover:bg-emerald-300 transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            Reset
+          </button>
         </div>
       </div>
     </div>

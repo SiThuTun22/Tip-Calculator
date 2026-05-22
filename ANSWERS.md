@@ -18,7 +18,7 @@ See README.md for instructions.
 *Modification:* 
 
 ## 5. Honest gap
-*Gap:* The app currently lacks a reset button to quickly clear all fields. I would add a "Reset" button that returns all state variables to their initial empty values.
+*Gap:* While the app handles typical edge cases, the UI does not yet implement dynamic font scaling for extremely large currency amounts (e.g., trillions). Given more time, I would add a utility to shrink text size based on string length to prevent layout overflow in the results panel.
 
 ## Rounding Policy
 *Policy:* I will implement a "Round Up to Nearest Cent" policy. This ensures that when splitting a bill (like $10.00 among 3 people), the total collected ($3.34 x 3 = $10.02) always covers the bill, with any remainder acting as a tiny additional tip.
