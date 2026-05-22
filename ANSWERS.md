@@ -4,21 +4,18 @@
 See README.md for instructions.
 
 ## 2. Stack & design choices
-**Stack:** React + Tailwind CSS.
-*Decision 1:* Dual-Column Layout (Desktop). I placed inputs on the left and results on the right to ensure the calculation feedback loop is always visible to the user without scrolling.
-*Decision 2:* Grid-based Tip Presets. I picked a grid over a dropdown or list for tip percentages to allow for single-tap selection, with a "Custom" input integrated directly into the grid for a cohesive visual flow. (Affects the "Select Tip %" section).
+**Stack:** React and plain CSS.
+I went with a two-column Flexbox layout for desktop. It keeps the inputs and the live results in the same view, which feels more responsive for the user. I chose a high-contrast dark panel for the results to visually separate the 'summary' from the 'input' section.
 
 ## 3. Responsive & accessibility
-*Consideration:* Implemented accessible labeling using the `htmlFor` attribute. Added visual error states (red borders and text) that appear inline to guide users without relying on disruptive browser-default popups.
-*Skipped:* `aria-live` regions for results. In a live-updating calculator, constant announcements on every keystroke can be overwhelming for screen reader users; we will focus on clear focus states instead.
+I used semantic HTML labels for all inputs to keep it accessible. For error handling, I implemented red borders and concise messages that trigger as the user types. I decided against using "aria-live" on the results; since they update on every keystroke, it would likely be too noisy for screen readers.
 
 ## 4. AI usage
-*Tool:* Gemini code assist.
-*Usage:* .
-*Modification:* 
+*Tool:* Gemini Code Assist was used to help scaffold the initial CSS structure and layout.
+*Refinement:* I manually adjusted the responsive breakpoints and simplified the logic to use derived state for better performance and readability.
 
 ## 5. Honest gap
-*Gap:* While the app handles typical edge cases, the UI does not yet implement dynamic font scaling for extremely large currency amounts (e.g., trillions). Given more time, I would add a utility to shrink text size based on string length to prevent layout overflow in the results panel.
+*Gap:* The app works well for normal bills. However, if the bill is a very large number (like trillions), the text might overlap. In the future, I would add code to shrink the font size automatically for large totals.
 
 ## Rounding Policy
-*Policy:* I will implement a "Round Up to Nearest Cent" policy. This ensures that when splitting a bill (like $10.00 among 3 people), the total collected ($3.34 x 3 = $10.02) always covers the bill, with any remainder acting as a tiny additional tip.
+*Policy:* I use a "Round Up" rule. For example, if you split $10.00 between 3 people, each person pays $3.34. This ensures the full bill is always covered.
